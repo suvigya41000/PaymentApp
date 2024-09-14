@@ -6,6 +6,7 @@ import { InputBox } from "../components/InputBox";
 import { SubHeading } from "../components/SubHeading";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AppBar } from "../components/AppBar";
 
 
 export default function Signin(){
@@ -13,15 +14,18 @@ export default function Signin(){
     const [password,setPassword]=useState("");
     const[error,setError]=useState("")
     const navigate=useNavigate()
-    return <div className="bg-slate-300 h-screen flex justify-center">
+    return <div  className="bg-slate-300 h-screen flex items-center justify-center">
+    <div className="absolute top-2 w-full">
+        <AppBar initial={""} />
+    </div>
             <div className="flex flex-col justify-center">
-                <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
+                <div className="rounded-lg  bg-white w-80 text-center p-2 h-max px-4 shadow">
                     <Heading lable={"Signin"}/>
                     <SubHeading lable={"Enter login information"}/>
                     <InputBox lable={"Email"} placeHolder={"Email"} onChange={(e)=>{
                         setUserName(e.target.value)
                     }}/>
-                    <InputBox lable={"Password"} placeHolder={"Password"} onChange={(e)=>{
+                    <InputBox type={"password"}  lable={"Password"} placeHolder={"Password"} onChange={(e)=>{
                         setPassword(e.target.value)
                     }}/>
                     <Button lable={"Sign in"} onClick={()=>{

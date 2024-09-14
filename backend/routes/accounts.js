@@ -1,6 +1,6 @@
 const {Router}=require("express");
 const { authMiddleware } = require("../middleware");
-const { Account } = require("../database");
+const { Account, Transactions } = require("../database");
 const router=Router();
 const mongoose=require("mongoose");
 router.get("/balance",authMiddleware, async (req,res)=>{
@@ -43,15 +43,34 @@ router.post("/transfer",authMiddleware,async (req,res)=>{
     await Account.updateOne({
         userId:req.userId
     },{
-        $inc:{balance:-amount}
+        $inc:{balance:-amount},
+        "$push":{
+                    transactions:`${amount} sent to ${to}`
+            }
     }).session(session);
     await Account.updateOne({
         userId:to
-    },{$inc:{balance:amount}
+    },{$inc:{balance:amount},
+    "$push":{
+                    transactions:`received ₹${amount} from ${to}`
+            }
     }).session(session)
     await session.commitTransaction();
     res.json({
         message:"transaction successful"
     })
+})
+router.get("/transactions",authMiddleware,async (req,res)=>{
+    const user=await Account.findOne({
+        userId:req.userId
+    })
+    if(!user){
+        return res.status(400).json({
+            message:"No acount found"
+        });
+    }
+        res.json({
+            transactions:user.transactions
+        })
 })
 module.exports=router;

@@ -18,10 +18,21 @@ const accountSchema=new mongoose.Schema({
    balance:{
       type:Number,
       required:true
-   }
+   },
+   transactions:[{type: String}]
 })
 const Account=mongoose.model('Account',accountSchema)
+// const Tschema=new mongoose.Schema({
+//    userId:{
+//       type:mongoose.Schema.Types.ObjectId,
+//       ref:'User',
+//       required:true
+//    },
+//    transactions:[{type: String}]
+// })
+// const Transactions=mongoose.model('Transactions',Tschema)
 module.exports={
    User,
    Account
+   // Transactions
 }

@@ -6,6 +6,7 @@ export const Profile=()=>{
     const [firstName,setFirstName]=useState("");
     const [lastName,setLastName]=useState("");
     const [userName,setUserName]=useState("");
+    const [id,setID]=useState("")
     const [initial,setInitial]=useState("");
     useEffect(()=>{ 
         axios.get("http://localhost:3000/api/v1/user/details",{
@@ -19,6 +20,7 @@ export const Profile=()=>{
         setUserName(response.data.userName)
         setLastName(response.data.lastName)
         setInitial(response.data.firstName[0])
+        setID(response.data.id)
     })
     },[])
     return <div className="m-2 ">
@@ -35,6 +37,10 @@ export const Profile=()=>{
             <div className="flex">
                 <div className="pr-2 text-lg ">Username: </div>
                 <div className="pr-2 text-lg ">{userName}</div>
+            </div>
+            <div className="flex">
+                <div className="pr-2 text-lg ">User Id: </div>
+                <div className="pr-2 text-lg ">{id}</div>
             </div>
         </div>
         

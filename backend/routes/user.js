@@ -136,7 +136,8 @@ router.get("/details",authMiddleware,async (req,res)=>{
     res.json({
         userName:user.userName,
         firstName:user.firstName,
-        lastName:user.lastName
+        lastName:user.lastName,
+        id:user._id
     })
 })
 module.exports=router;
