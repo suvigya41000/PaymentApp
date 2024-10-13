@@ -1,4 +1,9 @@
+require('dotenv').config();
 
-const JWT_token = "suvigya123";
-exports.JWT_token = JWT_token;
+const JWT_token = process.env.JWT_TOKEN;
+const Db_Url = process.env.DB_URL;
 
+module.exports = {
+    JWT_token,
+    Db_Url
+};

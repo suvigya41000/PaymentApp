@@ -41,8 +41,6 @@ export default function Signin(){
                                 setError(err.response.data.message);
                             }
                         })
-                        
-                        
                     }}/>
                     {error && <div className="flex text-xs text-red-500 pl-2">{error}</div>}
                     <BottomWarning lable={"Don't have an account?"} buttonText={"Sign up"} to={"/signup"}/>

@@ -35,7 +35,7 @@ export const SendMoney=()=>{
                             }).catch((err) => {
                                 // Handle specific 411 error
                                 if (err.response && err.response.status === 400) {
-                                  alert(err.response); // Show an alert message
+                                  alert(err.response.data.message); // Show an alert message
                                   setError(err.response.data.message);
                                 } else {
                                   setError("An error occurred. Please try again.");

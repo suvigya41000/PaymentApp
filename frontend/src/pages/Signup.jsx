@@ -14,7 +14,8 @@ export default function Signup(){
     const [lastName,setLastName]=useState("");
     const [userName,setUserName]=useState("");
     const [password,setPassword]=useState("");
-    return <div className="bg-slate-300 h-screen flex justify-center ">
+    return (
+        <div className="bg-slate-300 h-screen flex justify-center ">
             <div className="flex flex-col justify-center">
                 <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
                     <Heading lable={"Signup"}/>
@@ -28,7 +29,7 @@ export default function Signup(){
                     <InputBox lable={"Email"} placeHolder={"Email"} onChange={e=>{
                         setUserName(e.target.value)
                     }}/>
-                    <InputBox lable={"Password"} placeHolder={"Password"} onChange={e=>{
+                    <InputBox lable={"Password"} placeHolder={"Password"} type={"password"} onChange={e=>{
                         setPassword(e.target.value)
                     }}/>
                     <Button lable={"Sign up"} onClick={async ()=>{
@@ -58,4 +59,5 @@ export default function Signup(){
                 </div>
             </div>
         </div> 
+    )
 }

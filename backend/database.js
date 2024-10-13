@@ -1,6 +1,12 @@
 const mongoose=require("mongoose");
+const { Db_Url } = require("./config.js");
 
-mongoose.connect("mongodb+srv://suvigyakum:suvigya123@cluster0.kd8av.mongodb.net/paytm")
+console.log("Database URL:", Db_Url);
+
+mongoose.connect(Db_Url)
+    .then(() => console.log("Database connected successfully"))
+    .catch((error) => console.error("Database connection failed:", error));
+
 
 const userSchema= new mongoose.Schema({
    userName: String,
@@ -22,17 +28,7 @@ const accountSchema=new mongoose.Schema({
    transactions:[{type: String}]
 })
 const Account=mongoose.model('Account',accountSchema)
-// const Tschema=new mongoose.Schema({
-//    userId:{
-//       type:mongoose.Schema.Types.ObjectId,
-//       ref:'User',
-//       required:true
-//    },
-//    transactions:[{type: String}]
-// })
-// const Transactions=mongoose.model('Transactions',Tschema)
 module.exports={
    User,
    Account
-   // Transactions
 }

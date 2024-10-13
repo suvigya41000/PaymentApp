@@ -1,9 +1,10 @@
 const express=require("express")
 const zod=require("zod");
 const { User, Account } = require("../database");
-const { JWT_token } = require("../config");
+const { JWT_token } = require("../config.js");
 const { authMiddleware } = require("../middleware");
 const jwt = require("jsonwebtoken");
+// const { SendMail } = require("../mail/Sendmail");
 
 const router=express.Router()
 
